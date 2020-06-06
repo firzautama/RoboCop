@@ -33,15 +33,16 @@
             this.btnShowSelected = new System.Windows.Forms.Button();
             this.btnSelectDestination = new System.Windows.Forms.Button();
             this.btnCopy = new System.Windows.Forms.Button();
-            this.lblDestinationPath = new System.Windows.Forms.Label();
+            this.tbRename = new System.Windows.Forms.TextBox();
+            this.cbRename = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // btnSelectSourceFiles
             // 
             this.btnSelectSourceFiles.AccessibleName = "";
-            this.btnSelectSourceFiles.Location = new System.Drawing.Point(25, 81);
+            this.btnSelectSourceFiles.Location = new System.Drawing.Point(25, 45);
             this.btnSelectSourceFiles.Name = "btnSelectSourceFiles";
-            this.btnSelectSourceFiles.Size = new System.Drawing.Size(219, 35);
+            this.btnSelectSourceFiles.Size = new System.Drawing.Size(219, 71);
             this.btnSelectSourceFiles.TabIndex = 0;
             this.btnSelectSourceFiles.Text = "Select Source Files";
             this.btnSelectSourceFiles.UseVisualStyleBackColor = true;
@@ -50,7 +51,7 @@
             // lblFileName
             // 
             this.lblFileName.AutoSize = true;
-            this.lblFileName.Location = new System.Drawing.Point(21, 126);
+            this.lblFileName.Location = new System.Drawing.Point(21, 135);
             this.lblFileName.Name = "lblFileName";
             this.lblFileName.Size = new System.Drawing.Size(119, 20);
             this.lblFileName.TabIndex = 1;
@@ -58,7 +59,7 @@
             // 
             // btnShowSelected
             // 
-            this.btnShowSelected.Location = new System.Drawing.Point(146, 144);
+            this.btnShowSelected.Location = new System.Drawing.Point(146, 131);
             this.btnShowSelected.Name = "btnShowSelected";
             this.btnShowSelected.Size = new System.Drawing.Size(98, 29);
             this.btnShowSelected.TabIndex = 2;
@@ -69,9 +70,9 @@
             // btnSelectDestination
             // 
             this.btnSelectDestination.AccessibleName = "";
-            this.btnSelectDestination.Location = new System.Drawing.Point(25, 191);
+            this.btnSelectDestination.Location = new System.Drawing.Point(25, 226);
             this.btnSelectDestination.Name = "btnSelectDestination";
-            this.btnSelectDestination.Size = new System.Drawing.Size(219, 35);
+            this.btnSelectDestination.Size = new System.Drawing.Size(219, 71);
             this.btnSelectDestination.TabIndex = 3;
             this.btnSelectDestination.Text = "Select Destination Folder";
             this.btnSelectDestination.UseVisualStyleBackColor = true;
@@ -80,36 +81,55 @@
             // btnCopy
             // 
             this.btnCopy.AccessibleName = "";
-            this.btnCopy.Location = new System.Drawing.Point(25, 262);
+            this.btnCopy.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnCopy.Location = new System.Drawing.Point(25, 408);
             this.btnCopy.Name = "btnCopy";
-            this.btnCopy.Size = new System.Drawing.Size(219, 35);
+            this.btnCopy.Size = new System.Drawing.Size(219, 75);
             this.btnCopy.TabIndex = 4;
             this.btnCopy.Text = "Robo Cop";
             this.btnCopy.UseVisualStyleBackColor = true;
             this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
             // 
-            // lblDestinationPath
+            // tbRename
             // 
-            this.lblDestinationPath.AutoSize = true;
-            this.lblDestinationPath.Location = new System.Drawing.Point(250, 198);
-            this.lblDestinationPath.Name = "lblDestinationPath";
-            this.lblDestinationPath.Size = new System.Drawing.Size(127, 20);
-            this.lblDestinationPath.TabIndex = 5;
-            this.lblDestinationPath.Text = "Destination Path";
+            this.tbRename.Location = new System.Drawing.Point(25, 333);
+            this.tbRename.Name = "tbRename";
+            this.tbRename.Size = new System.Drawing.Size(219, 26);
+            this.tbRename.TabIndex = 6;
+            this.tbRename.Text = "New file name";
+            this.tbRename.Visible = false;
+            this.tbRename.TextChanged += new System.EventHandler(this.tbRename_TextChanged);
+            // 
+            // cbRename
+            // 
+            this.cbRename.AutoSize = true;
+            this.cbRename.Location = new System.Drawing.Point(25, 303);
+            this.cbRename.Name = "cbRename";
+            this.cbRename.Size = new System.Drawing.Size(96, 24);
+            this.cbRename.TabIndex = 7;
+            this.cbRename.Text = "Rename";
+            this.cbRename.UseVisualStyleBackColor = true;
+            this.cbRename.CheckedChanged += new System.EventHandler(this.cbRename_CheckedChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.lblDestinationPath);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(318, 495);
+            this.Controls.Add(this.cbRename);
+            this.Controls.Add(this.tbRename);
             this.Controls.Add(this.btnCopy);
             this.Controls.Add(this.btnSelectDestination);
             this.Controls.Add(this.btnShowSelected);
             this.Controls.Add(this.lblFileName);
             this.Controls.Add(this.btnSelectSourceFiles);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.RightToLeftLayout = true;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "RoboCop";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -123,7 +143,8 @@
         private System.Windows.Forms.Button btnShowSelected;
         private System.Windows.Forms.Button btnSelectDestination;
         private System.Windows.Forms.Button btnCopy;
-        private System.Windows.Forms.Label lblDestinationPath;
+        private System.Windows.Forms.TextBox tbRename;
+        private System.Windows.Forms.CheckBox cbRename;
     }
 }
 

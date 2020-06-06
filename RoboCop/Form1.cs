@@ -46,7 +46,6 @@ namespace RoboCop
             }
             lblFileName.Text = selectedFileNames.Count().ToString() + " files selected";
             sourcePath = Path.GetDirectoryName(openFile.FileName);
-            //lblFileName.Text = sourcePath;
         }
 
         private void btnSelectDestination_Click(object sender, EventArgs e)
@@ -57,11 +56,11 @@ namespace RoboCop
 
                 if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
                 {
-                    string[] files = Directory.GetFiles(fbd.SelectedPath);
+                    //string[] files = Directory.GetFiles(fbd.SelectedPath);
 
-                    System.Windows.Forms.MessageBox.Show("Files found: " + files.Length.ToString() + "\nin "+ fbd.SelectedPath, "Message");
+                    //System.Windows.Forms.MessageBox.Show("Files found: " + files.Length.ToString() + "\nin "+ fbd.SelectedPath, "Message");
                     destinationpath = fbd.SelectedPath;
-                    lblDestinationPath.Text = fbd.SelectedPath;
+                    //lblDestinationPath.Text = fbd.SelectedPath;
                 }
             }
         }
@@ -70,18 +69,56 @@ namespace RoboCop
         {
             try
             {
-                foreach (var item in selectedFileNames)
+                int num = 1;
+                foreach (string item in selectedFileNames)
                 {
+                    string extension = item.Split('.')[1];
+                    string fileName = item.Split('.')[0];
+                    string newName = tbRename.Text + num++.ToString();
+                    string newFileName = newName + "." + extension;
+
                     string source = Path.Combine(sourcePath, item);
                     string destination = Path.Combine(destinationpath, item);
-                    File.Copy(source, destination);
+                    string destinationRename = Path.Combine(destinationpath, newFileName);
+
+                    if (cbRename.Checked)
+                    {
+                        File.Copy(source, destinationRename);
+                    }
+                    else
+                    {
+                        File.Copy(source, destination);
+                    }
                 }
+                MessageBox.Show(selectedFileNames.Count().ToString() + " files has been copied.");
+                Form.ActiveForm.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString(), "Exception");
             }
-            
+        }
+
+        private void lblDestinationPath_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbRename_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbRename_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbRename.Checked)
+            {
+                tbRename.Visible = true;
+            }
+            else
+            {
+                tbRename.Visible = false;
+            }
         }
     }
 }
