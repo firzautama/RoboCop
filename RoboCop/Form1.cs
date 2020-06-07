@@ -45,6 +45,8 @@ namespace RoboCop
                 sb.AppendLine(item);
             }
             lblFileName.Text = selectedFileNames.Count().ToString() + " files selected";
+            lblFileName.Visible = true;
+            btnShowSelected.Visible = true;
             sourcePath = Path.GetDirectoryName(openFile.FileName);
         }
 
@@ -60,6 +62,8 @@ namespace RoboCop
 
                     //System.Windows.Forms.MessageBox.Show("Files found: " + files.Length.ToString() + "\nin "+ fbd.SelectedPath, "Message");
                     destinationpath = fbd.SelectedPath;
+                    cbRename.Visible = true;
+                    btnShowPath.Visible = true;
                     //lblDestinationPath.Text = fbd.SelectedPath;
                 }
             }
@@ -119,6 +123,11 @@ namespace RoboCop
             {
                 tbRename.Visible = false;
             }
+        }
+
+        private void btnShowPath_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(destinationpath, "Destination Path");
         }
     }
 }
