@@ -40,28 +40,35 @@
             // btnSelectSourceFiles
             // 
             this.btnSelectSourceFiles.AccessibleName = "";
+            this.btnSelectSourceFiles.BackColor = System.Drawing.Color.Black;
+            this.btnSelectSourceFiles.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnSelectSourceFiles.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSelectSourceFiles.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSelectSourceFiles.ForeColor = System.Drawing.Color.White;
             this.btnSelectSourceFiles.Location = new System.Drawing.Point(25, 45);
             this.btnSelectSourceFiles.Name = "btnSelectSourceFiles";
-            this.btnSelectSourceFiles.Size = new System.Drawing.Size(219, 71);
+            this.btnSelectSourceFiles.Size = new System.Drawing.Size(255, 71);
             this.btnSelectSourceFiles.TabIndex = 0;
             this.btnSelectSourceFiles.Text = "Select Source Files";
-            this.btnSelectSourceFiles.UseVisualStyleBackColor = true;
+            this.btnSelectSourceFiles.UseVisualStyleBackColor = false;
             this.btnSelectSourceFiles.Click += new System.EventHandler(this.btnSelectSourceFile_Click);
             // 
             // lblFileName
             // 
             this.lblFileName.AutoSize = true;
-            this.lblFileName.Location = new System.Drawing.Point(21, 135);
+            this.lblFileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFileName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(14)))), ((int)(((byte)(132)))));
+            this.lblFileName.Location = new System.Drawing.Point(23, 133);
             this.lblFileName.Name = "lblFileName";
-            this.lblFileName.Size = new System.Drawing.Size(119, 20);
+            this.lblFileName.Size = new System.Drawing.Size(137, 22);
             this.lblFileName.TabIndex = 1;
             this.lblFileName.Text = "xx files selected";
             // 
             // btnShowSelected
             // 
-            this.btnShowSelected.Location = new System.Drawing.Point(146, 131);
+            this.btnShowSelected.Location = new System.Drawing.Point(166, 131);
             this.btnShowSelected.Name = "btnShowSelected";
-            this.btnShowSelected.Size = new System.Drawing.Size(98, 29);
+            this.btnShowSelected.Size = new System.Drawing.Size(114, 29);
             this.btnShowSelected.TabIndex = 2;
             this.btnShowSelected.Text = "Show Files";
             this.btnShowSelected.UseVisualStyleBackColor = true;
@@ -70,31 +77,40 @@
             // btnSelectDestination
             // 
             this.btnSelectDestination.AccessibleName = "";
+            this.btnSelectDestination.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(168)))), ((int)(((byte)(178)))));
+            this.btnSelectDestination.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(168)))), ((int)(((byte)(178)))));
+            this.btnSelectDestination.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSelectDestination.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSelectDestination.ForeColor = System.Drawing.Color.White;
             this.btnSelectDestination.Location = new System.Drawing.Point(25, 226);
             this.btnSelectDestination.Name = "btnSelectDestination";
-            this.btnSelectDestination.Size = new System.Drawing.Size(219, 71);
+            this.btnSelectDestination.Size = new System.Drawing.Size(255, 71);
             this.btnSelectDestination.TabIndex = 3;
             this.btnSelectDestination.Text = "Select Destination Folder";
-            this.btnSelectDestination.UseVisualStyleBackColor = true;
+            this.btnSelectDestination.UseVisualStyleBackColor = false;
             this.btnSelectDestination.Click += new System.EventHandler(this.btnSelectDestination_Click);
             // 
             // btnCopy
             // 
             this.btnCopy.AccessibleName = "";
+            this.btnCopy.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(206)))), ((int)(((byte)(0)))));
             this.btnCopy.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnCopy.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(206)))), ((int)(((byte)(0)))));
+            this.btnCopy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCopy.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCopy.Location = new System.Drawing.Point(25, 408);
             this.btnCopy.Name = "btnCopy";
-            this.btnCopy.Size = new System.Drawing.Size(219, 75);
+            this.btnCopy.Size = new System.Drawing.Size(255, 75);
             this.btnCopy.TabIndex = 4;
             this.btnCopy.Text = "Robo Cop";
-            this.btnCopy.UseVisualStyleBackColor = true;
+            this.btnCopy.UseVisualStyleBackColor = false;
             this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
             // 
             // tbRename
             // 
             this.tbRename.Location = new System.Drawing.Point(25, 333);
             this.tbRename.Name = "tbRename";
-            this.tbRename.Size = new System.Drawing.Size(219, 26);
+            this.tbRename.Size = new System.Drawing.Size(255, 26);
             this.tbRename.TabIndex = 6;
             this.tbRename.Text = "New file name";
             this.tbRename.Visible = false;
@@ -116,7 +132,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(318, 495);
+            this.ClientSize = new System.Drawing.Size(309, 532);
             this.Controls.Add(this.cbRename);
             this.Controls.Add(this.tbRename);
             this.Controls.Add(this.btnCopy);
