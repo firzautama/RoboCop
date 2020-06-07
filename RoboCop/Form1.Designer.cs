@@ -46,9 +46,9 @@
             this.btnSelectSourceFiles.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSelectSourceFiles.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSelectSourceFiles.ForeColor = System.Drawing.Color.White;
-            this.btnSelectSourceFiles.Location = new System.Drawing.Point(25, 45);
+            this.btnSelectSourceFiles.Location = new System.Drawing.Point(37, 46);
             this.btnSelectSourceFiles.Name = "btnSelectSourceFiles";
-            this.btnSelectSourceFiles.Size = new System.Drawing.Size(255, 71);
+            this.btnSelectSourceFiles.Size = new System.Drawing.Size(255, 80);
             this.btnSelectSourceFiles.TabIndex = 0;
             this.btnSelectSourceFiles.Text = "Select Source Files";
             this.btnSelectSourceFiles.UseVisualStyleBackColor = false;
@@ -59,7 +59,7 @@
             this.lblFileName.AutoSize = true;
             this.lblFileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFileName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(14)))), ((int)(((byte)(132)))));
-            this.lblFileName.Location = new System.Drawing.Point(23, 125);
+            this.lblFileName.Location = new System.Drawing.Point(35, 134);
             this.lblFileName.Name = "lblFileName";
             this.lblFileName.Size = new System.Drawing.Size(137, 22);
             this.lblFileName.TabIndex = 1;
@@ -68,7 +68,7 @@
             // 
             // btnShowSelected
             // 
-            this.btnShowSelected.Location = new System.Drawing.Point(166, 123);
+            this.btnShowSelected.Location = new System.Drawing.Point(178, 132);
             this.btnShowSelected.Name = "btnShowSelected";
             this.btnShowSelected.Size = new System.Drawing.Size(114, 34);
             this.btnShowSelected.TabIndex = 2;
@@ -85,9 +85,9 @@
             this.btnSelectDestination.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSelectDestination.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSelectDestination.ForeColor = System.Drawing.Color.White;
-            this.btnSelectDestination.Location = new System.Drawing.Point(25, 230);
+            this.btnSelectDestination.Location = new System.Drawing.Point(37, 226);
             this.btnSelectDestination.Name = "btnSelectDestination";
-            this.btnSelectDestination.Size = new System.Drawing.Size(255, 71);
+            this.btnSelectDestination.Size = new System.Drawing.Size(255, 80);
             this.btnSelectDestination.TabIndex = 3;
             this.btnSelectDestination.Text = "Select Destination Folder";
             this.btnSelectDestination.UseVisualStyleBackColor = false;
@@ -101,9 +101,9 @@
             this.btnCopy.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(206)))), ((int)(((byte)(0)))));
             this.btnCopy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCopy.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCopy.Location = new System.Drawing.Point(25, 410);
+            this.btnCopy.Location = new System.Drawing.Point(37, 404);
             this.btnCopy.Name = "btnCopy";
-            this.btnCopy.Size = new System.Drawing.Size(255, 75);
+            this.btnCopy.Size = new System.Drawing.Size(255, 80);
             this.btnCopy.TabIndex = 4;
             this.btnCopy.Text = "Robo Cop";
             this.btnCopy.UseVisualStyleBackColor = false;
@@ -111,7 +111,7 @@
             // 
             // tbRename
             // 
-            this.tbRename.Location = new System.Drawing.Point(25, 346);
+            this.tbRename.Location = new System.Drawing.Point(37, 350);
             this.tbRename.Name = "tbRename";
             this.tbRename.Size = new System.Drawing.Size(255, 26);
             this.tbRename.TabIndex = 6;
@@ -122,7 +122,7 @@
             // cbRename
             // 
             this.cbRename.AutoSize = true;
-            this.cbRename.Location = new System.Drawing.Point(25, 312);
+            this.cbRename.Location = new System.Drawing.Point(37, 316);
             this.cbRename.Name = "cbRename";
             this.cbRename.Size = new System.Drawing.Size(96, 24);
             this.cbRename.TabIndex = 7;
@@ -133,7 +133,7 @@
             // 
             // btnShowPath
             // 
-            this.btnShowPath.Location = new System.Drawing.Point(166, 308);
+            this.btnShowPath.Location = new System.Drawing.Point(178, 312);
             this.btnShowPath.Name = "btnShowPath";
             this.btnShowPath.Size = new System.Drawing.Size(114, 34);
             this.btnShowPath.TabIndex = 8;
@@ -147,7 +147,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(309, 532);
+            this.ClientSize = new System.Drawing.Size(331, 532);
             this.Controls.Add(this.btnShowPath);
             this.Controls.Add(this.cbRename);
             this.Controls.Add(this.tbRename);
@@ -161,7 +161,7 @@
             this.Name = "Form1";
             this.RightToLeftLayout = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "RoboCop";
+            this.Text = "RoboCop(ier)";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
