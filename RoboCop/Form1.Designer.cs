@@ -36,6 +36,11 @@
             this.btnOpenFolder = new System.Windows.Forms.Button();
             this.btnAddToCopy = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbDate = new System.Windows.Forms.CheckBox();
+            this.tbSuffix = new System.Windows.Forms.TextBox();
+            this.cbSuffix = new System.Windows.Forms.CheckBox();
+            this.tbPrefix = new System.Windows.Forms.TextBox();
+            this.cbPrefix = new System.Windows.Forms.CheckBox();
             this.tbWildcard = new System.Windows.Forms.TextBox();
             this.rbWildcard = new System.Windows.Forms.RadioButton();
             this.rbFiles = new System.Windows.Forms.RadioButton();
@@ -67,10 +72,9 @@
             this.btnSelectDestination.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSelectDestination.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSelectDestination.ForeColor = System.Drawing.Color.White;
-            this.btnSelectDestination.Location = new System.Drawing.Point(12, 190);
-            this.btnSelectDestination.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSelectDestination.Location = new System.Drawing.Point(18, 292);
             this.btnSelectDestination.Name = "btnSelectDestination";
-            this.btnSelectDestination.Size = new System.Drawing.Size(222, 52);
+            this.btnSelectDestination.Size = new System.Drawing.Size(333, 80);
             this.btnSelectDestination.TabIndex = 3;
             this.btnSelectDestination.Text = "Select Destination Folder";
             this.btnSelectDestination.UseVisualStyleBackColor = false;
@@ -84,10 +88,9 @@
             this.btnCopy.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(206)))), ((int)(((byte)(0)))));
             this.btnCopy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCopy.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCopy.Location = new System.Drawing.Point(502, 476);
-            this.btnCopy.Margin = new System.Windows.Forms.Padding(2);
+            this.btnCopy.Location = new System.Drawing.Point(856, 803);
             this.btnCopy.Name = "btnCopy";
-            this.btnCopy.Size = new System.Drawing.Size(223, 46);
+            this.btnCopy.Size = new System.Drawing.Size(334, 71);
             this.btnCopy.TabIndex = 4;
             this.btnCopy.Text = "MAKE THE COPY";
             this.btnCopy.UseVisualStyleBackColor = false;
@@ -95,10 +98,9 @@
             // 
             // tbRename
             // 
-            this.tbRename.Location = new System.Drawing.Point(12, 272);
-            this.tbRename.Margin = new System.Windows.Forms.Padding(2);
+            this.tbRename.Location = new System.Drawing.Point(18, 418);
             this.tbRename.Name = "tbRename";
-            this.tbRename.Size = new System.Drawing.Size(222, 20);
+            this.tbRename.Size = new System.Drawing.Size(334, 26);
             this.tbRename.TabIndex = 6;
             this.tbRename.Text = "New file name";
             this.tbRename.Visible = false;
@@ -107,10 +109,9 @@
             // cbRename
             // 
             this.cbRename.AutoSize = true;
-            this.cbRename.Location = new System.Drawing.Point(12, 250);
-            this.cbRename.Margin = new System.Windows.Forms.Padding(2);
+            this.cbRename.Location = new System.Drawing.Point(18, 385);
             this.cbRename.Name = "cbRename";
-            this.cbRename.Size = new System.Drawing.Size(66, 17);
+            this.cbRename.Size = new System.Drawing.Size(96, 24);
             this.cbRename.TabIndex = 7;
             this.cbRename.Text = "Rename";
             this.cbRename.UseVisualStyleBackColor = true;
@@ -119,10 +120,9 @@
             // 
             // btnShowPath
             // 
-            this.btnShowPath.Location = new System.Drawing.Point(158, 246);
-            this.btnShowPath.Margin = new System.Windows.Forms.Padding(2);
+            this.btnShowPath.Location = new System.Drawing.Point(237, 378);
             this.btnShowPath.Name = "btnShowPath";
-            this.btnShowPath.Size = new System.Drawing.Size(76, 22);
+            this.btnShowPath.Size = new System.Drawing.Size(114, 34);
             this.btnShowPath.TabIndex = 8;
             this.btnShowPath.Text = "Show Path";
             this.btnShowPath.UseVisualStyleBackColor = true;
@@ -131,10 +131,9 @@
             // 
             // btnOpenFolder
             // 
-            this.btnOpenFolder.Location = new System.Drawing.Point(144, 527);
-            this.btnOpenFolder.Margin = new System.Windows.Forms.Padding(2);
+            this.btnOpenFolder.Location = new System.Drawing.Point(216, 882);
             this.btnOpenFolder.Name = "btnOpenFolder";
-            this.btnOpenFolder.Size = new System.Drawing.Size(105, 22);
+            this.btnOpenFolder.Size = new System.Drawing.Size(158, 34);
             this.btnOpenFolder.TabIndex = 10;
             this.btnOpenFolder.Text = "Open Folder";
             this.btnOpenFolder.UseVisualStyleBackColor = true;
@@ -149,10 +148,9 @@
             this.btnAddToCopy.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro;
             this.btnAddToCopy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddToCopy.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddToCopy.Location = new System.Drawing.Point(13, 324);
-            this.btnAddToCopy.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAddToCopy.Location = new System.Drawing.Point(16, 578);
             this.btnAddToCopy.Name = "btnAddToCopy";
-            this.btnAddToCopy.Size = new System.Drawing.Size(222, 52);
+            this.btnAddToCopy.Size = new System.Drawing.Size(333, 80);
             this.btnAddToCopy.TabIndex = 11;
             this.btnAddToCopy.Text = "ADD TO COPY LIST";
             this.btnAddToCopy.UseVisualStyleBackColor = false;
@@ -160,6 +158,11 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cbDate);
+            this.groupBox1.Controls.Add(this.tbSuffix);
+            this.groupBox1.Controls.Add(this.cbSuffix);
+            this.groupBox1.Controls.Add(this.tbPrefix);
+            this.groupBox1.Controls.Add(this.cbPrefix);
             this.groupBox1.Controls.Add(this.tbWildcard);
             this.groupBox1.Controls.Add(this.rbWildcard);
             this.groupBox1.Controls.Add(this.rbFiles);
@@ -172,30 +175,83 @@
             this.groupBox1.Controls.Add(this.cbRename);
             this.groupBox1.Controls.Add(this.tbRename);
             this.groupBox1.Controls.Add(this.btnSelectDestination);
-            this.groupBox1.Location = new System.Drawing.Point(15, 24);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox1.Location = new System.Drawing.Point(22, 37);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(250, 396);
+            this.groupBox1.Size = new System.Drawing.Size(375, 696);
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "SELECT SOURCE FROM : ";
+            this.groupBox1.Text = "SELECT SOURCE FROM";
+            // 
+            // cbDate
+            // 
+            this.cbDate.AccessibleRole = System.Windows.Forms.AccessibleRole.Alert;
+            this.cbDate.AutoSize = true;
+            this.cbDate.Location = new System.Drawing.Point(20, 520);
+            this.cbDate.Name = "cbDate";
+            this.cbDate.Size = new System.Drawing.Size(114, 24);
+            this.cbDate.TabIndex = 23;
+            this.cbDate.Text = "Date Suffix";
+            this.cbDate.UseVisualStyleBackColor = true;
+            this.cbDate.Visible = false;
+            // 
+            // tbSuffix
+            // 
+            this.tbSuffix.Location = new System.Drawing.Point(100, 486);
+            this.tbSuffix.Name = "tbSuffix";
+            this.tbSuffix.Size = new System.Drawing.Size(252, 26);
+            this.tbSuffix.TabIndex = 22;
+            this.tbSuffix.Visible = false;
+            // 
+            // cbSuffix
+            // 
+            this.cbSuffix.AccessibleRole = System.Windows.Forms.AccessibleRole.Alert;
+            this.cbSuffix.AutoSize = true;
+            this.cbSuffix.Location = new System.Drawing.Point(20, 487);
+            this.cbSuffix.Name = "cbSuffix";
+            this.cbSuffix.Size = new System.Drawing.Size(75, 24);
+            this.cbSuffix.TabIndex = 21;
+            this.cbSuffix.Text = "Suffix";
+            this.cbSuffix.UseVisualStyleBackColor = true;
+            this.cbSuffix.Visible = false;
+            this.cbSuffix.CheckedChanged += new System.EventHandler(this.cbSuffix_CheckedChanged);
+            // 
+            // tbPrefix
+            // 
+            this.tbPrefix.Location = new System.Drawing.Point(100, 454);
+            this.tbPrefix.Name = "tbPrefix";
+            this.tbPrefix.Size = new System.Drawing.Size(252, 26);
+            this.tbPrefix.TabIndex = 20;
+            this.tbPrefix.Visible = false;
+            // 
+            // cbPrefix
+            // 
+            this.cbPrefix.AccessibleRole = System.Windows.Forms.AccessibleRole.Alert;
+            this.cbPrefix.AutoSize = true;
+            this.cbPrefix.Location = new System.Drawing.Point(20, 455);
+            this.cbPrefix.Name = "cbPrefix";
+            this.cbPrefix.Size = new System.Drawing.Size(74, 24);
+            this.cbPrefix.TabIndex = 19;
+            this.cbPrefix.Text = "Prefix";
+            this.cbPrefix.UseVisualStyleBackColor = true;
+            this.cbPrefix.Visible = false;
+            this.cbPrefix.CheckedChanged += new System.EventHandler(this.cbPrefix_CheckedChanged);
             // 
             // tbWildcard
             // 
-            this.tbWildcard.Location = new System.Drawing.Point(12, 130);
-            this.tbWildcard.Margin = new System.Windows.Forms.Padding(2);
+            this.tbWildcard.Location = new System.Drawing.Point(18, 200);
             this.tbWildcard.Name = "tbWildcard";
-            this.tbWildcard.Size = new System.Drawing.Size(222, 20);
+            this.tbWildcard.Size = new System.Drawing.Size(331, 26);
             this.tbWildcard.TabIndex = 18;
             this.tbWildcard.Visible = false;
+            this.tbWildcard.TextChanged += new System.EventHandler(this.tbWildcard_TextChanged);
             // 
             // rbWildcard
             // 
             this.rbWildcard.AutoSize = true;
-            this.rbWildcard.Location = new System.Drawing.Point(72, 24);
+            this.rbWildcard.Location = new System.Drawing.Point(108, 37);
+            this.rbWildcard.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.rbWildcard.Name = "rbWildcard";
-            this.rbWildcard.Size = new System.Drawing.Size(67, 17);
+            this.rbWildcard.Size = new System.Drawing.Size(95, 24);
             this.rbWildcard.TabIndex = 17;
             this.rbWildcard.Text = "Wildcard";
             this.rbWildcard.UseVisualStyleBackColor = true;
@@ -204,9 +260,10 @@
             // rbFiles
             // 
             this.rbFiles.AutoSize = true;
-            this.rbFiles.Location = new System.Drawing.Point(145, 24);
+            this.rbFiles.Location = new System.Drawing.Point(218, 37);
+            this.rbFiles.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.rbFiles.Name = "rbFiles";
-            this.rbFiles.Size = new System.Drawing.Size(46, 17);
+            this.rbFiles.Size = new System.Drawing.Size(67, 24);
             this.rbFiles.TabIndex = 16;
             this.rbFiles.Text = "Files";
             this.rbFiles.UseVisualStyleBackColor = true;
@@ -216,9 +273,10 @@
             // 
             this.rbFolder.AutoSize = true;
             this.rbFolder.Checked = true;
-            this.rbFolder.Location = new System.Drawing.Point(12, 24);
+            this.rbFolder.Location = new System.Drawing.Point(18, 37);
+            this.rbFolder.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.rbFolder.Name = "rbFolder";
-            this.rbFolder.Size = new System.Drawing.Size(54, 17);
+            this.rbFolder.Size = new System.Drawing.Size(79, 24);
             this.rbFolder.TabIndex = 15;
             this.rbFolder.TabStop = true;
             this.rbFolder.Text = "Folder";
@@ -227,10 +285,9 @@
             // 
             // btnShowPathSourceFolder
             // 
-            this.btnShowPathSourceFolder.Location = new System.Drawing.Point(159, 104);
-            this.btnShowPathSourceFolder.Margin = new System.Windows.Forms.Padding(2);
+            this.btnShowPathSourceFolder.Location = new System.Drawing.Point(238, 160);
             this.btnShowPathSourceFolder.Name = "btnShowPathSourceFolder";
-            this.btnShowPathSourceFolder.Size = new System.Drawing.Size(76, 22);
+            this.btnShowPathSourceFolder.Size = new System.Drawing.Size(114, 34);
             this.btnShowPathSourceFolder.TabIndex = 14;
             this.btnShowPathSourceFolder.Text = "Show Path";
             this.btnShowPathSourceFolder.UseVisualStyleBackColor = true;
@@ -242,10 +299,9 @@
             this.lblFilesInFolder.AutoSize = true;
             this.lblFilesInFolder.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFilesInFolder.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(14)))), ((int)(((byte)(132)))));
-            this.lblFilesInFolder.Location = new System.Drawing.Point(10, 107);
-            this.lblFilesInFolder.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblFilesInFolder.Location = new System.Drawing.Point(15, 165);
             this.lblFilesInFolder.Name = "lblFilesInFolder";
-            this.lblFilesInFolder.Size = new System.Drawing.Size(114, 15);
+            this.lblFilesInFolder.Size = new System.Drawing.Size(169, 22);
             this.lblFilesInFolder.TabIndex = 13;
             this.lblFilesInFolder.Text = "xx files in the folder.";
             this.lblFilesInFolder.Visible = false;
@@ -258,10 +314,9 @@
             this.btnSelectSourceFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSelectSourceFolder.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSelectSourceFolder.ForeColor = System.Drawing.Color.White;
-            this.btnSelectSourceFolder.Location = new System.Drawing.Point(12, 48);
-            this.btnSelectSourceFolder.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSelectSourceFolder.Location = new System.Drawing.Point(18, 74);
             this.btnSelectSourceFolder.Name = "btnSelectSourceFolder";
-            this.btnSelectSourceFolder.Size = new System.Drawing.Size(222, 52);
+            this.btnSelectSourceFolder.Size = new System.Drawing.Size(333, 80);
             this.btnSelectSourceFolder.TabIndex = 12;
             this.btnSelectSourceFolder.Text = "Select Source Folder";
             this.btnSelectSourceFolder.UseVisualStyleBackColor = false;
@@ -273,9 +328,10 @@
             this.btnSaveBatFile.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(206)))), ((int)(((byte)(0)))));
             this.btnSaveBatFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSaveBatFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSaveBatFile.Location = new System.Drawing.Point(28, 476);
+            this.btnSaveBatFile.Location = new System.Drawing.Point(42, 803);
+            this.btnSaveBatFile.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSaveBatFile.Name = "btnSaveBatFile";
-            this.btnSaveBatFile.Size = new System.Drawing.Size(221, 46);
+            this.btnSaveBatFile.Size = new System.Drawing.Size(332, 71);
             this.btnSaveBatFile.TabIndex = 17;
             this.btnSaveBatFile.Text = "SAVE A BATCH FILE";
             this.btnSaveBatFile.UseVisualStyleBackColor = false;
@@ -283,26 +339,29 @@
             // 
             // tbBatchFileName
             // 
-            this.tbBatchFileName.Location = new System.Drawing.Point(27, 448);
+            this.tbBatchFileName.Location = new System.Drawing.Point(40, 760);
+            this.tbBatchFileName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbBatchFileName.Name = "tbBatchFileName";
-            this.tbBatchFileName.Size = new System.Drawing.Size(221, 20);
+            this.tbBatchFileName.Size = new System.Drawing.Size(330, 26);
             this.tbBatchFileName.TabIndex = 19;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(24, 432);
+            this.label1.Location = new System.Drawing.Point(36, 736);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(83, 13);
+            this.label1.Size = new System.Drawing.Size(123, 20);
             this.label1.TabIndex = 20;
             this.label1.Text = "Batch file name:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(287, 24);
+            this.label3.Location = new System.Drawing.Point(430, 37);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(163, 13);
+            this.label3.Size = new System.Drawing.Size(236, 20);
             this.label3.TabIndex = 25;
             this.label3.Text = "The Checked files will be copied.";
             // 
@@ -315,9 +374,11 @@
             this.columnHeader2});
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
-            this.listView1.Location = new System.Drawing.Point(290, 40);
+            this.listView1.HideSelection = false;
+            this.listView1.Location = new System.Drawing.Point(435, 62);
+            this.listView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(435, 354);
+            this.listView1.Size = new System.Drawing.Size(755, 592);
             this.listView1.TabIndex = 26;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -335,17 +396,19 @@
             // 
             // tbUpdateListView
             // 
-            this.tbUpdateListView.Location = new System.Drawing.Point(456, 448);
+            this.tbUpdateListView.Location = new System.Drawing.Point(435, 760);
+            this.tbUpdateListView.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbUpdateListView.Name = "tbUpdateListView";
-            this.tbUpdateListView.Size = new System.Drawing.Size(180, 20);
+            this.tbUpdateListView.Size = new System.Drawing.Size(268, 26);
             this.tbUpdateListView.TabIndex = 27;
             this.tbUpdateListView.Visible = false;
             // 
             // BtnUpdate
             // 
-            this.BtnUpdate.Location = new System.Drawing.Point(642, 444);
+            this.BtnUpdate.Location = new System.Drawing.Point(711, 752);
+            this.BtnUpdate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.BtnUpdate.Name = "BtnUpdate";
-            this.BtnUpdate.Size = new System.Drawing.Size(83, 27);
+            this.BtnUpdate.Size = new System.Drawing.Size(124, 38);
             this.BtnUpdate.TabIndex = 28;
             this.BtnUpdate.Text = "Rename";
             this.BtnUpdate.UseVisualStyleBackColor = true;
@@ -355,18 +418,20 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(287, 451);
+            this.label2.Location = new System.Drawing.Point(430, 736);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(169, 13);
+            this.label2.Size = new System.Drawing.Size(250, 20);
             this.label2.TabIndex = 29;
             this.label2.Text = "Select an item above and rename:";
             this.label2.Visible = false;
             // 
             // btnCheckAll
             // 
-            this.btnCheckAll.Location = new System.Drawing.Point(290, 400);
+            this.btnCheckAll.Location = new System.Drawing.Point(799, 664);
+            this.btnCheckAll.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnCheckAll.Name = "btnCheckAll";
-            this.btnCheckAll.Size = new System.Drawing.Size(83, 20);
+            this.btnCheckAll.Size = new System.Drawing.Size(124, 31);
             this.btnCheckAll.TabIndex = 30;
             this.btnCheckAll.Text = "Check All";
             this.btnCheckAll.UseVisualStyleBackColor = true;
@@ -375,9 +440,10 @@
             // 
             // btnUncheckAll
             // 
-            this.btnUncheckAll.Location = new System.Drawing.Point(379, 400);
+            this.btnUncheckAll.Location = new System.Drawing.Point(932, 664);
+            this.btnUncheckAll.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnUncheckAll.Name = "btnUncheckAll";
-            this.btnUncheckAll.Size = new System.Drawing.Size(83, 20);
+            this.btnUncheckAll.Size = new System.Drawing.Size(124, 31);
             this.btnUncheckAll.TabIndex = 31;
             this.btnUncheckAll.Text = "Uncheck All";
             this.btnUncheckAll.UseVisualStyleBackColor = true;
@@ -386,9 +452,10 @@
             // 
             // btnClearList
             // 
-            this.btnClearList.Location = new System.Drawing.Point(468, 400);
+            this.btnClearList.Location = new System.Drawing.Point(1066, 664);
+            this.btnClearList.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnClearList.Name = "btnClearList";
-            this.btnClearList.Size = new System.Drawing.Size(83, 20);
+            this.btnClearList.Size = new System.Drawing.Size(124, 31);
             this.btnClearList.TabIndex = 32;
             this.btnClearList.Text = "Clear List";
             this.btnClearList.UseVisualStyleBackColor = true;
@@ -397,10 +464,10 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(749, 571);
+            this.ClientSize = new System.Drawing.Size(1229, 944);
             this.Controls.Add(this.btnClearList);
             this.Controls.Add(this.btnUncheckAll);
             this.Controls.Add(this.btnCheckAll);
@@ -415,10 +482,9 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnOpenFolder);
             this.Controls.Add(this.btnCopy);
-            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(1500, 610);
-            this.MinimumSize = new System.Drawing.Size(765, 610);
+            this.MaximumSize = new System.Drawing.Size(2239, 1000);
+            this.MinimumSize = new System.Drawing.Size(1136, 1000);
             this.Name = "Form1";
             this.RightToLeftLayout = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -460,5 +526,10 @@
         private System.Windows.Forms.Button btnCheckAll;
         private System.Windows.Forms.Button btnUncheckAll;
         private System.Windows.Forms.Button btnClearList;
+        private System.Windows.Forms.TextBox tbPrefix;
+        private System.Windows.Forms.CheckBox cbPrefix;
+        private System.Windows.Forms.CheckBox cbDate;
+        private System.Windows.Forms.TextBox tbSuffix;
+        private System.Windows.Forms.CheckBox cbSuffix;
     }
 }

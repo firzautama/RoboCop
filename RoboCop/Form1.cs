@@ -94,10 +94,16 @@ namespace RoboCop
             if (cbRename.Checked)
             {
                 tbRename.Visible = true;
+                cbPrefix.Visible = true;
+                cbSuffix.Visible = true;
+                cbDate.Visible = true;
             }
             else
             {
                 tbRename.Visible = false;
+                cbPrefix.Visible = false;
+                cbSuffix.Visible = false;
+                cbDate.Visible = false;
             }
         }
 
@@ -136,12 +142,42 @@ namespace RoboCop
                 {
                     if (cbRename.Checked)
                     {
+                        string numbering = num++.ToString();
                         string extension = Path.GetExtension(item);
                         string fileName = Path.GetFileNameWithoutExtension(item);
-                        string newName = tbRename.Text + num++.ToString();
+                        string newName = tbRename.Text + numbering;
+                        
+                        if (cbPrefix.Checked)
+                        {
+                            newName = tbPrefix.Text + newName;
+                        }
+                        if (cbSuffix.Checked)
+                        {
+                            newName = tbRename.Text + tbSuffix.Text + numbering.ToString();
+                        }
+                        if (cbDate.Checked)
+                        {
+                            newName = tbRename.Text + numbering + "_" + DateTime.Now.ToString();
+                        }
+                        if (cbPrefix.Checked && cbSuffix.Checked)
+                        {
+                            newName = tbPrefix.Text + tbRename.Text + tbSuffix.Text + numbering.ToString();
+                        }
+                        if (cbSuffix.Checked && cbDate.Checked)
+                        {
+                            newName = tbRename.Text + tbSuffix.Text + numbering + "_" + DateTime.Now.ToString();
+                        }
+                        if (cbPrefix.Checked && cbDate.Checked)
+                        {
+                            newName = tbPrefix.Text + numbering + "_" + DateTime.Now.ToString();
+                        }
+                        if (cbPrefix.Checked && cbSuffix.Checked && cbDate.Checked)
+                        {
+                            newName = tbPrefix.Text + tbRename.Text + tbSuffix.Text + numbering + "_" + DateTime.Now.ToString();
+                        }
                         string newFileName = newName + extension;
                         string destinationRename = Path.Combine(destinationPath, newFileName);
-
+                        
                         ListViewItem addedRenamedItem = new ListViewItem(item);
                         addedRenamedItem.SubItems.Add(destinationRename);
                         listView1.Items.Add(addedRenamedItem);
@@ -288,7 +324,7 @@ namespace RoboCop
             if (rbWildcard.Checked)
             {
                 string wildcardText = tbWildcard.Text;
-                if (tbWildcard.Text == "" || !tbWildcard.Text.Contains("*"))
+                if (tbWildcard.Text == "" || !tbWildcard.Text.Contains("*") || !tbWildcard.Text.Contains("?"))
                 {
                     MessageBox.Show("Please enter a wildcard.");
                 }
@@ -370,6 +406,35 @@ namespace RoboCop
             label2.Visible = false;
             tbUpdateListView.Visible = false;
             BtnUpdate.Visible = false;
+        }
+
+        private void cbPrefix_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbPrefix.Checked)
+            {
+                tbPrefix.Visible = true;
+            }
+            else
+            {
+                tbPrefix.Visible = false;
+            }
+        }
+
+        private void cbSuffix_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbSuffix.Checked)
+            {
+                tbSuffix.Visible = true;
+            }
+            else
+            {
+                tbSuffix.Visible = false;
+            }
+        }
+
+        private void tbWildcard_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
