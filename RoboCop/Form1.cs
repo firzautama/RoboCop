@@ -12,7 +12,6 @@ namespace RoboCop
     {
         List<string> selectedFileNames = new List<string>();
         List<string> sourceFilePathAndFileName = new List<string>();
-        string sourcePath;
         string destinationPath;
         public Form1()
         {
@@ -22,31 +21,6 @@ namespace RoboCop
         private void Form1_Load(object sender, EventArgs e)
         {
 
-        }
-
-        private void btnSelectSourceFile_Click(object sender, EventArgs e)
-        {
-            //OpenFiles();
-        }
-
-        private void OpenFiles()
-        {
-            OpenFileDialog openFile = new OpenFileDialog();
-            openFile.Multiselect = true;
-            openFile.ShowDialog();
-            string[] selectedFilesArray = openFile.SafeFileNames;
-            string[] selectedFilePathArray = openFile.FileNames;
-            foreach (var item in selectedFilesArray)
-            {
-                selectedFileNames.Add(item);
-            }
-            //lblFileName.Text = selectedFileNames.Count().ToString() + " files selected";
-            //lblFileName.Visible = true;
-            sourcePath = Path.GetDirectoryName(openFile.FileName);
-            foreach (var item in selectedFilePathArray)
-            {
-                sourceFilePathAndFileName.Add(item);
-            }
         }
 
         private void btnSelectDestination_Click(object sender, EventArgs e)
@@ -61,6 +35,7 @@ namespace RoboCop
 
                     cbRename.Visible = true;
                     btnShowPath.Visible = true;
+                    prefixSuffixDateVisible();
                 }
             }
         }
@@ -77,6 +52,7 @@ namespace RoboCop
                     File.Copy(sourceChecked, destinationChecked);
                 }
                 MessageBox.Show(listView1.CheckedItems.Count.ToString() + " files has been copied.");
+                btnOpenFolderCopy.Visible = true;
             }
             catch (Exception ex)
             {
@@ -94,16 +70,16 @@ namespace RoboCop
             if (cbRename.Checked)
             {
                 tbRename.Visible = true;
-                cbPrefix.Visible = true;
-                cbSuffix.Visible = true;
-                cbDate.Visible = true;
+                //cbPrefix.Visible = true;
+                //cbSuffix.Visible = true;
+                //cbDate.Visible = true;
             }
             else
             {
                 tbRename.Visible = false;
-                cbPrefix.Visible = false;
-                cbSuffix.Visible = false;
-                cbDate.Visible = false;
+                //cbPrefix.Visible = false;
+                //cbSuffix.Visible = false;
+                //cbDate.Visible = false;
             }
         }
 
@@ -115,6 +91,12 @@ namespace RoboCop
         private void BtnOpenFolder_Click(object sender, EventArgs e)
         {
             Process.Start(@"C:\Temp\");
+        }
+
+        private string AddToRename(string prefix, string rename, string suffix, string numbering, string date)
+        {
+            string addToRename = prefix + rename + suffix + numbering + date;
+            return addToRename;
         }
 
         private void btnAddToCopy_Click(object sender, EventArgs e)
@@ -129,52 +111,31 @@ namespace RoboCop
             }
             if (cbRename.Checked && tbRename.Text == "")
             {
-                MessageBox.Show("Enter a new file name or uncheck Rename");
+                MessageBox.Show("Incremental numbering will be used as file name.", "Rename field is empty");
             }
             int num = 1;
             foreach (var item in sourceFilePathAndFileName)
             {
                 if (!item.Contains("."))
                 {
-                    MessageBox.Show("Invalid file name found. \nWill not be included.", "File name error");
+                    MessageBox.Show("File(s) with invalid name will not be added to the list.", "Invalid file name character found");
                 }
                 else
                 {
+                    string prefix = tbPrefix.Text;
+                    string suffix = tbSuffix.Text;
+                    string numbering = num++.ToString();
+                    string date = "";
+                    string extension = Path.GetExtension(item);
+                    if (cbDate.Checked)
+                    {
+                        date = "_" + DateTime.Now.ToString("dddd, dd MMMM yy hh_mm tt");
+                    }
                     if (cbRename.Checked)
                     {
-                        string numbering = num++.ToString();
-                        string extension = Path.GetExtension(item);
+                        string rename = tbRename.Text;
                         string fileName = Path.GetFileNameWithoutExtension(item);
-                        string newName = tbRename.Text + numbering;
-                        
-                        if (cbPrefix.Checked)
-                        {
-                            newName = tbPrefix.Text + newName;
-                        }
-                        if (cbSuffix.Checked)
-                        {
-                            newName = tbRename.Text + tbSuffix.Text + numbering.ToString();
-                        }
-                        if (cbDate.Checked)
-                        {
-                            newName = tbRename.Text + numbering + "_" + DateTime.Now.ToString();
-                        }
-                        if (cbPrefix.Checked && cbSuffix.Checked)
-                        {
-                            newName = tbPrefix.Text + tbRename.Text + tbSuffix.Text + numbering.ToString();
-                        }
-                        if (cbSuffix.Checked && cbDate.Checked)
-                        {
-                            newName = tbRename.Text + tbSuffix.Text + numbering + "_" + DateTime.Now.ToString();
-                        }
-                        if (cbPrefix.Checked && cbDate.Checked)
-                        {
-                            newName = tbPrefix.Text + numbering + "_" + DateTime.Now.ToString();
-                        }
-                        if (cbPrefix.Checked && cbSuffix.Checked && cbDate.Checked)
-                        {
-                            newName = tbPrefix.Text + tbRename.Text + tbSuffix.Text + numbering + "_" + DateTime.Now.ToString();
-                        }
+                        string newName = AddToRename(prefix, rename, suffix, numbering, date);
                         string newFileName = newName + extension;
                         string destinationRename = Path.Combine(destinationPath, newFileName);
                         
@@ -184,7 +145,8 @@ namespace RoboCop
                     }
                     else
                     {
-                        string destinationFileName = Path.GetFileName(item);
+                        string fileName = Path.GetFileName(item);
+                        string destinationFileName = AddToRename(prefix, fileName, suffix, numbering, date) + extension;
                         string destinationPathAndFileName = Path.Combine(destinationPath, destinationFileName);
 
                         ListViewItem addedItem = new ListViewItem(item);
@@ -205,15 +167,13 @@ namespace RoboCop
             btnShowPathSourceFolder.Visible = false;
             btnCheckAll.Visible = true;
             btnUncheckAll.Visible = true;
+            btnRemoveSelected.Visible = true;
             btnClearList.Visible = true;
             label2.Visible = true;
             tbUpdateListView.Visible = true;
+            tbUpdateListView.Text = "";
             BtnUpdate.Visible = true;
-        }
-
-        private void ListView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
+            btnDateList.Visible = true;
         }
 
         private void BtnCheckAll_Click(object sender, EventArgs e)
@@ -238,7 +198,7 @@ namespace RoboCop
             string batchFileName = tbBatchFileName.Text;
             if (tbBatchFileName.Text == "")
             {
-                MessageBox.Show("Please insert a batch file name");
+                MessageBox.Show("Please insert a batch file name","No batch file name");
             }
             else
             {
@@ -260,6 +220,8 @@ namespace RoboCop
 
         private void RbFiles_CheckedChanged(object sender, EventArgs e)
         {
+            btnShowPathSourceFolder.Visible = false;
+            btnSelectSourceFolder.Visible = true;
             lblFilesInFolder.Visible = false;
             btnSelectSourceFolder.Text = "Select Source Files";
             tbWildcard.Visible = false;
@@ -267,10 +229,11 @@ namespace RoboCop
 
         private void RbFolder_CheckedChanged(object sender, EventArgs e)
         {
+            btnShowPathSourceFolder.Visible = false;
+            btnSelectSourceFolder.Visible = true;
             lblFilesInFolder.Visible = false;
             tbWildcard.Visible = false;
             btnSelectSourceFolder.Text = "Select Source Folder";
-            //lblFilesInFolder.Visible = true;
         }
 
         private void BtnSelectSourceFolder_Click(object sender, EventArgs e)
@@ -289,9 +252,6 @@ namespace RoboCop
                         {
                             sourceFilePathAndFileName.Add(item);
                         }
-                        //System.Windows.Forms.MessageBox.Show("Files found: " + files.Length.ToString() + "\nin "+ folderBrowser.SelectedPath, "Message");
-                        //destinationPath = folderBrowser.SelectedPath;
-                        //cbRename.Visible = true;
                         btnShowPathSourceFolder.Visible = true;
                         lblFilesInFolder.Text = files.Length.ToString() + " files found in the folder.";
                         lblFilesInFolder.Visible = true;
@@ -304,15 +264,7 @@ namespace RoboCop
                 OpenFileDialog openFile = new OpenFileDialog();
                 openFile.Multiselect = true;
                 openFile.ShowDialog();
-                //string[] selectedFilesArray = openFile.SafeFileNames;
                 string[] selectedFilePathArray = openFile.FileNames;
-                //foreach (var item in selectedFilesArray)
-                //{
-                //    selectedFileNames.Add(item);
-                //}
-                //lblFileName.Text = selectedFileNames.Count().ToString() + " files selected";
-                //lblFileName.Visible = true;
-                //sourcePath = Path.GetDirectoryName(openFile.FileName);
                 foreach (var item in selectedFilePathArray)
                 {
                     sourceFilePathAndFileName.Add(item);
@@ -324,9 +276,9 @@ namespace RoboCop
             if (rbWildcard.Checked)
             {
                 string wildcardText = tbWildcard.Text;
-                if (tbWildcard.Text == "" || !tbWildcard.Text.Contains("*") || !tbWildcard.Text.Contains("?"))
+                if (tbWildcard.Text == "" || !tbWildcard.Text.Contains("*"))
                 {
-                    MessageBox.Show("Please enter a wildcard.");
+                    MessageBox.Show("Please enter a wildcard.","Invalid wildcard name.");
                 }
                 else
                 {
@@ -348,18 +300,33 @@ namespace RoboCop
                         }
                     }
                 }
-
             }
+        }
+
+        private void prefixSuffixDateVisible()
+        {
+            cbPrefix.Visible = true;
+            cbSuffix.Visible = true;
+            cbDate.Visible = true;
         }
 
         private void BtnShowPathSourceFolder_Click(object sender, EventArgs e)
         {
+            StringBuilder sb = new StringBuilder();
+            foreach (var item in sourceFilePathAndFileName)
+            {
+                string fileName = Path.GetFileName(item);
+                sb.AppendLine(fileName);
+            }
             string sourceFolderPath = Path.GetDirectoryName(sourceFilePathAndFileName[0]);
-            MessageBox.Show(sourceFolderPath);
+            MessageBox.Show(sb.ToString(),sourceFolderPath);
         }
 
         private void RbWildcard_CheckedChanged(object sender, EventArgs e)
         {
+            btnShowPathSourceFolder.Visible = false;
+            tbWildcard.Text = "";
+            btnSelectSourceFolder.Visible = false;
             btnSelectSourceFolder.Text = "Select Source using Wildcard in a Folder";
             lblFilesInFolder.Text = "Insert wildcard below.";
             lblFilesInFolder.Visible = true;
@@ -377,6 +344,7 @@ namespace RoboCop
         {
             UpdateListView();
         }
+
         private void UpdateListView()
         {
             string fullPathToUpdate = listView1.SelectedItems[0].SubItems[1].Text;
@@ -387,29 +355,28 @@ namespace RoboCop
             listView1.SelectedItems[0].SubItems[1].Text = updatedFullPath;
         }
 
-        private void TbUpdateListView_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void BtnClearList_Click(object sender, EventArgs e)
         {
             listView1.Items.Clear();
             HideButtonRelatedToList();
         }
+
         private void HideButtonRelatedToList()
         {
             btnShowPathSourceFolder.Visible = false;
             btnCheckAll.Visible = false;
             btnUncheckAll.Visible = false;
+            btnRemoveSelected.Visible = false;
             btnClearList.Visible = false;
             label2.Visible = false;
             tbUpdateListView.Visible = false;
             BtnUpdate.Visible = false;
+            btnDateList.Visible = false;
         }
 
         private void cbPrefix_CheckedChanged(object sender, EventArgs e)
         {
+            tbPrefix.Text = "";
             if (cbPrefix.Checked)
             {
                 tbPrefix.Visible = true;
@@ -422,6 +389,7 @@ namespace RoboCop
 
         private void cbSuffix_CheckedChanged(object sender, EventArgs e)
         {
+            tbSuffix.Text = "";
             if (cbSuffix.Checked)
             {
                 tbSuffix.Visible = true;
@@ -434,7 +402,24 @@ namespace RoboCop
 
         private void tbWildcard_TextChanged(object sender, EventArgs e)
         {
+            btnSelectSourceFolder.Visible = true;
+            btnShowPathSourceFolder.Visible = false;
+            lblFilesInFolder.Visible = false;
+        }
 
+        private void btnOpenFolderCopy_Click(object sender, EventArgs e)
+        {
+            Process.Start(destinationPath);
+        }
+
+        private void btnDateList_Click(object sender, EventArgs e)
+        {
+            tbUpdateListView.Text = tbUpdateListView.Text + "_" + DateTime.Now.ToString("dddd, dd MMMM yy hh_mm tt");
+        }
+
+        private void btnRemoveSelected_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Work in progress");
         }
     }
 }
