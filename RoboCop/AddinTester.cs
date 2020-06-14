@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.IO;
 
 namespace RoboCop
 {
@@ -16,6 +17,32 @@ namespace RoboCop
         public AddinTester()
         {
             InitializeComponent();
+
+            string originalDllPath = @"C:\ProgramData\Autodesk\Revit\Addins\2019\DLLs\BecaRevitMEPapiDev2019.dll";
+            string testDllPath = @"C:\Users\Firza\Downloads\yudi.rar"; //path in BIM folder
+
+            lblState.Text = CompareDllState(originalDllPath, testDllPath);
+        }
+
+        private string CompareDllState(string originalPath, string testPath)
+        {
+            DateTime originalFileDate = File.GetLastWriteTime(originalPath);
+            DateTime testFileDate = File.GetLastWriteTime(testPath);
+            int compareDllDate = DateTime.Compare(originalFileDate, testFileDate);
+            string compareDateResult;
+            if (compareDllDate < 0)
+            {
+                compareDateResult = "ORIGINAL ADD-IN";//"is earlier than";
+            }
+            else if (compareDllDate == 0)
+            {
+                compareDateResult = "TEST ADD-IN";//"is the same time as";
+            }
+            else
+            {
+                compareDateResult = "LATER THAN TEST FILE";//"is later than";
+            }
+            return compareDateResult;
         }
 
         private void ddlAddinName_SelectedIndexChanged(object sender, EventArgs e)
