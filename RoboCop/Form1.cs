@@ -70,16 +70,10 @@ namespace RoboCop
             if (cbRename.Checked)
             {
                 tbRename.Visible = true;
-                //cbPrefix.Visible = true;
-                //cbSuffix.Visible = true;
-                //cbDate.Visible = true;
             }
             else
             {
                 tbRename.Visible = false;
-                //cbPrefix.Visible = false;
-                //cbSuffix.Visible = false;
-                //cbDate.Visible = false;
             }
         }
 
