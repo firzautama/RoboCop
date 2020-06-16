@@ -15,20 +15,30 @@ namespace RoboCop
     public partial class AddinTester : Form
     {
         string selectedTestFolder;
+        string selectedTestName;
         string destinationFolder = @"C:\Revit Add-in Test";
         string tempDllFolder = @"C:\Temp Revit DLL";
-        string userDllPath = @"C:\ProgramData\Autodesk\Revit\Addins\2019\DLLs\BecaRevitMEPapiDev2019.dll";
-        string currentReleaseDllPath = @"P:\01\CAD\Revit\Beca\Custom\Addins\2019\DLLs\BecaRevitMEPapiDev2019.dll";
+        string userDllCommandPath = @"C:\ProgramData\Autodesk\Revit\Addins\2019\DLLs\BecaRevitMEPapiDev2019.dll";
+        string userDllToolsPath = @"C:\ProgramData\Autodesk\Revit\Addins\2019\DLLs\BecaMEPtools2019.dll";
+        string currentReleaseDllCommandPath = @"P:\01\CAD\Revit\Beca\Custom\Addins\2019\DLLs\BecaRevitMEPapiDev2019.dll";
+        string currentReleaseDllToolsPath = @"P:\01\CAD\Revit\Beca\Custom\Addins\2019\DLLs\BecaMEPtools2019.dll";
         public AddinTester()
         {
             InitializeComponent();
 
-            CompareDllState(userDllPath, currentReleaseDllPath);
-
-            string[] testFolder = Directory.GetDirectories("\\\\beca.net\\data\\BIM\\MEP\\For Review");
-            foreach (var item in testFolder)
+            lblState.Text = CompareDllState(userDllCommandPath, currentReleaseDllCommandPath);
+            if (lblState.Text == "TEST FILE ADD-IN")
             {
-                ddlAddinTestName.Items.Add(Path.GetFileName(item));
+                gbSelectAddin.Visible = false;
+                btnApplyTest.Visible = false;
+            }
+            else
+            {
+                string[] testFolder = Directory.GetDirectories("\\\\beca.net\\data\\BIM\\MEP\\For Review");
+                foreach (var item in testFolder)
+                {
+                    ddlAddinTestName.Items.Add(Path.GetFileName(item));
+                }
             }
         }
 
@@ -50,7 +60,6 @@ namespace RoboCop
             {
                 compareDateResult = "TEST FILE ADD-IN";//"is later than";
             }
-            lblState.Text = compareDateResult;
             return compareDateResult;
         }
 
@@ -68,14 +77,23 @@ namespace RoboCop
                 {
                     Directory.CreateDirectory(tempDllFolder);
                 }
-                string tempDllDestination = Path.Combine(tempDllFolder, "BecaRevitMEPapiDev2019.dll");
+                string tempDllCommandDestination = Path.Combine(tempDllFolder, "BecaRevitMEPapiDev2019.dll");
                 if (File.Exists("C:\\Temp Revit DLL\\BecaRevitMEPapiDev2019.dll"))
                 {
                     File.Delete("C:\\Temp Revit DLL\\BecaRevitMEPapiDev2019.dll");
                 }
-                File.Move(userDllPath, tempDllDestination);
-                File.Copy("C:\\Users\\FU1\\Desktop\\BecaRevitMEPapiDev2019.dll", userDllPath);
-                CompareDllState(userDllPath, currentReleaseDllPath);
+                string tempDllToolsDestination = Path.Combine(tempDllFolder, "BecaMEPtools2019.dll");
+                if (File.Exists("C:\\Temp Revit DLL\\BecaMEPtools2019.dll"))
+                {
+                    File.Delete("C:\\Temp Revit DLL\\BecaMEPtools2019.dll");
+                }
+                File.Move(userDllCommandPath, tempDllCommandDestination);
+                File.Move(userDllToolsPath, tempDllToolsDestination);
+                string testDllCommandPath = Path.Combine("\\\\beca.net\\data\\BIM\\MEP\\For Review",selectedTestName, "BecaRevitMEPapiDev2019.dll");
+                string testDllToolsPath = Path.Combine("\\\\beca.net\\data\\BIM\\MEP\\For Review", selectedTestName, "BecaMEPtools2019.dll");
+                File.Copy(testDllCommandPath, userDllCommandPath);
+                File.Copy(testDllToolsPath, userDllToolsPath);
+                lblState.Text = CompareDllState(userDllCommandPath, currentReleaseDllCommandPath);
             }
             //lblState.Text = "Test Add-in";
             lblOpenRevit.Visible = true;
@@ -83,14 +101,22 @@ namespace RoboCop
 
         private void btnRestoreAddin_Click(object sender, EventArgs e)
         {
-
-            MessageBox.Show("Please close Revit", "Revit instance is open");
+            if (lblState.Text == "TEST FILE ADD-IN")
+            {
+                File.Delete(userDllCommandPath);
+                File.Delete(userDllToolsPath);
+                string userDllCommandBack = Path.Combine(tempDllFolder, "BecaRevitMEPapiDev2019.dll");
+                string userDllToolsBack = Path.Combine(tempDllFolder, "BecaMEPtools2019.dll");
+                File.Move(userDllCommandBack, userDllCommandPath);
+                File.Move(userDllToolsBack, userDllToolsPath);
+            }
+            //MessageBox.Show("Please close Revit", "Revit instance is open");
             lblState.Text = "Original Add-in";
         }
 
         private void lblDownloadFiles_Click(object sender, EventArgs e)
         {
-            string selectedTestName = ddlAddinTestName.SelectedItem.ToString();
+            selectedTestName = ddlAddinTestName.SelectedItem.ToString();
             string testFolderPath = "\\\\beca.net\\data\\BIM\\MEP\\For Review";
             selectedTestFolder = Path.Combine(testFolderPath,selectedTestName);
             string[] sourceFiles = Directory.GetFiles(selectedTestFolder,"*",SearchOption.AllDirectories);
@@ -100,7 +126,10 @@ namespace RoboCop
             }
             foreach (var item in sourceFiles)
             {
-                File.Copy(item, item.Replace(testFolderPath, destinationFolder));
+                if (!File.Exists(item))
+                {
+                    File.Copy(item, item.Replace(testFolderPath, destinationFolder));
+                }
             }
             lblDownloadFiles.Text = "Related testing files has been downloaded";
             btnOpenFolder.Visible = true;
@@ -110,7 +139,7 @@ namespace RoboCop
         {
             string downloadedFolder = Path.Combine(destinationFolder, ddlAddinTestName.SelectedItem.ToString());
             Process.Start(downloadedFolder); //this has error when alredy opened (Form.ActiveForm == null) 
-            Form.ActiveForm.TopMost = true;
+            //Form.ActiveForm.TopMost = true;
         }
 
         private void lblOpenRevit_Click(object sender, EventArgs e)
@@ -126,14 +155,7 @@ namespace RoboCop
 
         private void lblState_Click(object sender, EventArgs e)
         {
-            if (lblState.Text == "Original Add-in")
-            {
-                lblState.Text = "Test Add-in";
-                lblSelectAddin.Visible = false;
-                ddlAddinTestName.Visible = false;
-                btnApplyTest.Visible = false;
-                lblOpenRevit.Visible = false;
-            }
+
         }
 
         private void lblState_TextChanged(object sender, EventArgs e)
@@ -146,12 +168,15 @@ namespace RoboCop
             //    btnApplyTest.Visible = false;
             //    lblOpenRevit.Visible = false;
             //}
-            if (lblState.Text == "Original Add-in")
+            if (lblState.Text == "TEST FILE ADD-IN")
             {
-                lblSelectAddin.Visible = true;
-                ddlAddinTestName.Visible = true;
+                gbSelectAddin.Visible = false;
+                btnApplyTest.Visible = false;
+            }
+            if (lblState.Text == "ORIGINAL ADD-IN")
+            {
+                gbSelectAddin.Visible = true;
                 btnApplyTest.Visible = true;
-                lblOpenRevit.Visible = true;
             }
         }
     }
