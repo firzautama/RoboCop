@@ -87,9 +87,9 @@ namespace RoboCop
             Process.Start(@"C:\Temp\");
         }
 
-        private string AddToRename(string prefix, string rename, string suffix, string numbering, string date)
+        private string AddToRename(string datePrefix, string prefix, string rename, string suffix, string numbering, string date)
         {
-            string addToRename = prefix + rename + suffix + numbering + date;
+            string addToRename = datePrefix + prefix + rename + suffix + numbering + date;
             return addToRename;
         }
 
@@ -112,7 +112,7 @@ namespace RoboCop
             {
                 if (!item.Contains("."))
                 {
-                    MessageBox.Show("File(s) with invalid name will not be added to the list.", "Invalid file name character found");
+                    MessageBox.Show("File(s) with invalid name will not be added to the list.", "Invalid file name found");
                 }
                 else
                 {
@@ -120,17 +120,21 @@ namespace RoboCop
                     string suffix = tbSuffix.Text;
                     string numbering = num++.ToString();
                     string date = "";
+                    string datePrefix = "";
                     string extension = Path.GetExtension(item);
                     if (cbDate.Checked)
                     {
-                        date = "_" + DateTime.Now.ToString("dddd, dd MMMM yy hh_mm tt");
+                        date = "_" + DateTime.Now.ToString("yyyy-MM-dd");
+                    }
+                    if (cbDatePrefix.Checked)
+                    {
+                        datePrefix = DateTime.Now.ToString("yyyy-MM-dd") + "_";
                     }
                     if (cbRename.Checked)
                     {
                         string rename = tbRename.Text;
                         string fileName = Path.GetFileNameWithoutExtension(item);
-                        string newName = AddToRename(prefix, rename, suffix, numbering, date);
-                        string newFileName = newName + extension;
+                        string newFileName = AddToRename(datePrefix,prefix, rename, suffix, numbering, date) + extension;
                         string destinationRename = Path.Combine(destinationPath, newFileName);
                         
                         ListViewItem addedRenamedItem = new ListViewItem(item);
@@ -139,8 +143,8 @@ namespace RoboCop
                     }
                     else
                     {
-                        string fileName = Path.GetFileName(item);
-                        string destinationFileName = AddToRename(prefix, fileName, suffix, numbering, date) + extension;
+                        string fileName = Path.GetFileNameWithoutExtension(item);
+                        string destinationFileName = AddToRename(datePrefix,prefix, fileName, suffix, numbering, date) + extension;
                         string destinationPathAndFileName = Path.Combine(destinationPath, destinationFileName);
 
                         ListViewItem addedItem = new ListViewItem(item);
@@ -302,6 +306,7 @@ namespace RoboCop
             cbPrefix.Visible = true;
             cbSuffix.Visible = true;
             cbDate.Visible = true;
+            cbDatePrefix.Visible = true;
         }
 
         private void BtnShowPathSourceFolder_Click(object sender, EventArgs e)
@@ -408,12 +413,17 @@ namespace RoboCop
 
         private void btnDateList_Click(object sender, EventArgs e)
         {
-            tbUpdateListView.Text = tbUpdateListView.Text + "_" + DateTime.Now.ToString("dddd, dd MMMM yy hh_mm tt");
+            tbUpdateListView.Text = tbUpdateListView.Text + "_" + DateTime.Now.ToString("yyyy-MM-dd");
         }
 
         private void btnRemoveSelected_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Work in progress");
+        }
+
+        private void GroupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }
