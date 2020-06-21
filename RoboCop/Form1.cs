@@ -87,9 +87,9 @@ namespace RoboCop
             Process.Start(@"C:\Temp\");
         }
 
-        private string AddToRename(string datePrefix, string prefix, string rename, string suffix, string numbering, string date)
+        private string AddToRename(string datePrefix, string prefix, string rename, string suffix, string date)
         {
-            string addToRename = datePrefix + prefix + rename + suffix + numbering + date;
+            string addToRename = datePrefix + prefix + rename + suffix + date;
             return addToRename;
         }
 
@@ -134,7 +134,7 @@ namespace RoboCop
                     {
                         string rename = tbRename.Text;
                         string fileName = Path.GetFileNameWithoutExtension(item);
-                        string newFileName = AddToRename(datePrefix,prefix, rename, suffix, numbering, date) + extension;
+                        string newFileName = AddToRename(datePrefix,prefix, rename, suffix, date) + extension;
                         string destinationRename = Path.Combine(destinationPath, newFileName);
                         
                         ListViewItem addedRenamedItem = new ListViewItem(item);
@@ -144,7 +144,7 @@ namespace RoboCop
                     else
                     {
                         string fileName = Path.GetFileNameWithoutExtension(item);
-                        string destinationFileName = AddToRename(datePrefix,prefix, fileName, suffix, numbering, date) + extension;
+                        string destinationFileName = AddToRename(datePrefix,prefix, fileName, suffix, date) + extension;
                         string destinationPathAndFileName = Path.Combine(destinationPath, destinationFileName);
 
                         ListViewItem addedItem = new ListViewItem(item);
