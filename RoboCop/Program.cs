@@ -17,7 +17,20 @@ namespace RoboCop
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new AddinTester());
-            Application.Run(new Form1());
+
+            string message = "Have you closed Revit?";
+            string title = "Revit Check";
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+            DialogResult result = MessageBox.Show(message, title, buttons);
+            if (result == DialogResult.Yes)
+            {
+                Application.Run(new BecaBetaInstaller());
+            }
+            else
+            {
+                MessageBox.Show("Please close Revit to run the installer");
+            }
+            
         }
     }
 }
